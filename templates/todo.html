@@ -1,0 +1,23 @@
+{{ range . }}
+<li class="flex justify-between">
+    <p>
+    {{ .Content }}
+    </p>
+    <div class="flex gap-1 items-center">
+        <input type="checkbox" 
+        {{if .Finished }}
+        checked
+        {{end}}
+        class="aspect-square w-4 m-y-auto"
+        hx-put="/todos/{{.Id}}"
+        hx-target="closest li"
+        hx-swap="outerHTML"
+        />
+        <button class="text-base"
+            hx-delete="/todos/{{.Id}}"
+            hx-target="closest li"
+            hx-swap="delete"
+            >❌</button>
+    </div>
+</li>
+{{ end }}
